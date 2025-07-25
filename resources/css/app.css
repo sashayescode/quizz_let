@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+
+@layer utilities {
+    .font-lucky {
+        font-family: 'Luckiest Guy', cursive;
+    }
+
+    body,
+    html {
+        --font-sans:
+            'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    }
+}
