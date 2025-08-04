@@ -38,7 +38,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import Modal from '@/components/Modal.vue';
 import Icon from '@/components/Icon.vue';
-import Button from '@/components/Button.vue';
+import Button from '@/components/ButtonLink.vue';
 import { Link, router } from '@inertiajs/vue3';
 import { reactive, ref } from 'vue'
 

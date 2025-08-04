@@ -10,11 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('words', function (Blueprint $table) {
-            $table->id();
-            $table->string('word');
-            $table->string('translation');
-            $table->string('status')->default('new'); //new / traslated/ checked/ saved 
+        Schema::table('words', function (Blueprint $table) {
+            $table->foreignId('cardset_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('words');
+        Schema::table('words', function (Blueprint $table) {
+            $table->dropColumn('cardset_id');
+        });
     }
 };

@@ -14,7 +14,7 @@
 </template>
 <script setup>
 import { router } from '@inertiajs/vue3';
-import { reactive, watch } from 'vue'
+import { reactive } from 'vue'
 
 const props = defineProps({
     text: String,

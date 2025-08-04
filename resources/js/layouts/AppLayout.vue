@@ -1,9 +1,10 @@
 <template>
-    <div class="w-full h-[92px] bg-indigo-400 mb-10">
+    <div class="w-screen h-[92px] bg-indigo-400 mb-10">
     </div>
-    <div class="flex justify-center w-screen h-[calc(100vh-92px)]">
-        <slot></slot>
-    </div>
+    <slot></slot>
+    <!-- <div class="flex justify-center w-screen h-[calc(100vh-92px)]">
+        
+    </div> -->
 
 </template>
 <script setup>

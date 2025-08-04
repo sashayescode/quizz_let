@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cardset;
 use Illuminate\Http\Request;
 use App\Models\Word;
 use Inertia\Inertia;
@@ -12,7 +13,7 @@ class WordController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Cardset $cardset)
     {
         $words = Word::all();
         return Inertia::render('words/Words', [

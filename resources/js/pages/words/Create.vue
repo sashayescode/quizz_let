@@ -7,7 +7,7 @@
 
 </template>
 <script setup>
-import Button from '@/components/Button.vue';
+import Button from '@/components/ButtonLink.vue';
 import Form from '@/components/Form.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 

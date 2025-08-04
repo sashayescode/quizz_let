@@ -29,7 +29,7 @@
 </template>
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue';
-import Button from '@/components/Button.vue';
+import Button from '@/components/ButtonLink.vue';
 import { Link } from '@inertiajs/vue3'
 
 const props = defineProps({
