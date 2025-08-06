@@ -5,7 +5,7 @@
                 <p class="text-gray-800 text-2xl">{{ cardset.name }}</p>
                 <Icon name="horizontal-dots" class="text-purple-200" :width="28" :height="28"></Icon>
             </div>
-            <p class="text-lg font-bold text-gray-700">{{ termsAmount ?? 2 }} terms</p>
+            <p class="text-lg font-bold text-gray-700">{{ cardset.words_count  }} terms</p>
 
 
         </div>

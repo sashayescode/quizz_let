@@ -1,28 +1,33 @@
 <template>
     <AppLayout>
+       <div>
+         <CardsetMainCard :words="words"></CardsetMainCard>
+         <ButtonLink label="Edit set" :url="`/cardsets/${cardset.id}/edit`"></ButtonLink>
+       </div>
 
-        <div class="flex justify-center w-full h-full">
-            <div class="grid grid-cols-3 grid-rows-3  gap-20">
-                <CardsetCard v-for="cardset in cardsets" :cardset="cardset" @edit="editCardSet" @delete="deleteCardset">
-                </CardsetCard>
-            </div>
+        <div class="space-y-3">
+            <p class="font-lucky p-3 my-2 border-2 border-purple-400 w-fit">All words</p>
+            <CardWord v-for="word in words" :word="word">
+                <div class="flex items-center p-3 space-x-10">
+                    <p class="min-w-[250px]">{{ word.word }}</p>
+                    <div class="h-4 w-1 bg-purple-300"></div>
+                    <p class="min-w-[200px]">{{ word.translation }}</p>
+                </div>
+
+            </CardWord>
         </div>
     </AppLayout>
 </template>
+
 <script setup>
+import Button from '@/components/Button.vue';
+import ButtonLink from '@/components/ButtonLink.vue';
+import CardsetMainCard from '@/components/cardset/CarouselleCard.vue';
+import CardWord from '@/components/words/CardWord.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
-import CardsetCard from '@/components/cardset/CardsetCard.vue';
-import { router } from '@inertiajs/vue3';
+
 defineProps({
-    cardsets: Object,
+    cardset: Object,
+    words: Object,
 })
-
-const editCardSet = (id) => {
-    router.get(`/cardsets/${id}`);
-}
-
-const deleteCardset = (id) => {
-    router.delete(`/cardsets/${id}`);
-}
-
 </script>

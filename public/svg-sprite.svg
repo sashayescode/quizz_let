@@ -36,4 +36,12 @@
 				d="M80,128a16,16,0,1,1-16-16A16.01833,16.01833,0,0,1,80,128Zm112-16a16,16,0,1,0,16,16A16.01833,16.01833,0,0,0,192,112Zm-64,0a16,16,0,1,0,16,16A16.01833,16.01833,0,0,0,128,112Z" />
 		</svg>
 	</symbol>
+
+	<symbol>
+		<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" id="chevron-right">
+			<path clip-rule="evenodd"
+				d="M8.17158 8L3.58579 3.41421L6.41422 0.585785L13.8284 8L6.41422 15.4142L3.58579 12.5858L8.17158 8Z"
+				fill="currentColor" fill-rule="evenodd" />
+		</svg>
+	</symbol>
 </svg>

@@ -14,9 +14,9 @@ class CardSetController extends Controller
      */
     public function index()
     {
-        $cardsets = Cardset::all();
+        $cardsets = Cardset::withCount('words')->get();
 
-        return Inertia::render('cardsets/Show', [
+        return Inertia::render('cardsets/Index', [
             'cardsets' => $cardsets,
         ]);
     }
@@ -60,7 +60,7 @@ class CardSetController extends Controller
         $cardset->load('words');
         $words = $cardset->words;
 
-        return Inertia::render('cardsets/Create', [
+        return Inertia::render('cardsets/Show', [
             'cardset' => $cardset,
             'words' => $words,
         ]);
@@ -69,18 +69,36 @@ class CardSetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+     public function edit(Cardset $cardset)
     {
+        $cardset->load('words');
+        $words = $cardset->words;
 
-
+        return Inertia::render('cardsets/Create', [
+            'cardset' => $cardset,
+            'words' => $words,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cardset $cardset)
     {
-        //
+        $cardset->update([
+            'name' => $request->get('name'),
+        ]);
+
+        $words = collect($request->get('words'))->map(function ($word) use ($cardset) {
+            return [
+                'id' => $word['id'] ?? null,
+                'word' => $word['word'],
+                'translation' => $word['translation'],
+                'cardset_id' => $cardset->id,
+            ];
+        })->toArray();
+        Word::upsert($words, ['id'], ['word', 'translation']);
     }
 
     /**

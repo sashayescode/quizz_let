@@ -8,4 +8,12 @@
         <Icon v-if="name" :name="name" class="text-white group-hover:text-indigo-400 z-10"></Icon>
     </button>
 </template>
-<script setup></script>
+<script setup>
+
+import Icon from './Icon.vue';
+
+defineProps({
+    name: String,
+    label: String,
+})
+</script>
