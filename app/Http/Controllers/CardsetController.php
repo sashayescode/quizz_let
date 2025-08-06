@@ -40,13 +40,14 @@ class CardSetController extends Controller
             ]
         );
         $words = $request->get('words');
-        foreach ($words as $word) {
-            $wordData = new Word([
+
+        $wordModels = collect($words)->map(function ($word) {
+            return new Word([
                 'word' => $word['word'],
                 'translation' => $word['translation'],
             ]);
-            $cardset->words()->save($wordData);
-        }
+        });
+        $cardset->words()->saveMany($wordModels);
 
         return redirect()->route('cardsets.index');
     }
@@ -85,8 +86,9 @@ class CardSetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cardset $cardset)
     {
-        //
+        $cardset->delete();
+        return redirect('/cardsets');
     }
 }

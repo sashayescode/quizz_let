@@ -1,26 +1,28 @@
 <template>
     <AppLayout>
 
-        <div class="grid auto-cols-auto grid-rows-3">
-            <Link v-if="cardsets?.length !== 0" :href="`/cardsets/${cardset.id}`" v-for="cardset in cardsets">
-            <div class="flex space-x-3 items-start">
-                <Icon name="folder"></Icon>
-                <p class="font-lucky text-xl">{{ cardset.name }}</p>
+        <div class="flex justify-center w-full h-full">
+            <div class="grid grid-cols-3 grid-rows-3  gap-20">
+                <CardsetCard v-for="cardset in cardsets" :cardset="cardset" @edit="editCardSet" @delete="deleteCardset">
+                </CardsetCard>
             </div>
-            </Link>
         </div>
-
-
-        <Button label="Add set" name="plus" url="/cardsets/create"></Button>
     </AppLayout>
 </template>
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue';
-import Button from '@/components/ButtonLink.vue';
-import Icon from '@/components/Icon.vue';
-import { Link } from '@inertiajs/vue3';
-
+import CardsetCard from '@/components/cardset/CardsetCard.vue';
+import { router } from '@inertiajs/vue3';
 defineProps({
     cardsets: Object,
 })
+
+const editCardSet = (id) => {
+    router.get(`/cardsets/${id}`);
+}
+
+const deleteCardset = (id) => {
+    router.delete(`/cardsets/${id}`);
+}
+
 </script>

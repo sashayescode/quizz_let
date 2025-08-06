@@ -9,7 +9,7 @@ use App\Models\CardSet;
 class Word extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['word', 'translation'];
+    protected $fillable = ['word', 'translation', 'cardset_id'];
 
     public function cardSets(): BelongsToMany
     {

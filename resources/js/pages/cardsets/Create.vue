@@ -1,33 +1,29 @@
 <template>
     <AppLayout>
-        <form @submit.prevent="submit">
-            <div class="flex flex-col p-6 w-screen border-b-2 border-purple-300 border-dashed mb-2">
-                <Input label="Name" v-model="form.name"></Input>
+        <form @submit.prevent="submit" class="px-50 space-y-10">
+            <Input label="Name" v-model="form.name"></Input>
+            <div class="flex space-x-3 items-center justify-between">
+                <div class="w-6/12 h-1 bg-purple-300"></div>
+                <div class="size-4 rounded-full bg-purple-300"></div>
+                <div class="w-6/12 h-1 bg-purple-300"></div>
             </div>
-            <!-- <div v-if="words?.length !== 0" class="p-6" v-for="word in words">
-                <Card :number="word.id" :word="word.word" :translation="word.translation"></Card>
+            <CardWord v-for="word in form.words">
+                <WordForm v-model:wordValue="word.word" v-model:translationValue="word.translation"></WordForm>
+            </CardWord>
 
-                <WordForm v-model:wordValue="form.word" v-model:translationValue="form.translation" :word="word">
-                </WordForm>
-            </div> -->
-            <Card v-for="(word, index) in form.words" :number="index + 1" v-model:wordValue="form.words[index].word" v-model:translationValue="form.words[index].translation"></Card>
-            <Button type="submit" label="Create"></Button>
-
-            <!-- 
-            <Button type="submit" label="Cancel"></Button> -->
-
+            <button type="submit">Create</button>
         </form>
         <Button label="Add new word" @click="addWord"></Button>
     </AppLayout>
 </template>
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue';
-import Card from '@/components/Card.vue';
 import Button from '@/components/ButtonLink.vue';
 import Input from '@/components/Input.vue';
-import WordForm from '@/components/cardset/Form.vue'
-import { reactive, watch } from 'vue';
+import WordForm from '@/components/cardset/WordForm.vue'
+import { reactive } from 'vue';
 import { router } from '@inertiajs/vue3'
+import CardWord from '@/components/words/CardWord.vue';
 
 const props = defineProps({
     cardset: Object,
@@ -45,16 +41,10 @@ const form = reactive({
     ]
 })
 
-watch(
-  () => form.words,
-  (newV) => {
-    console.log('words changed:', newV);
-  },
-  { deep: true }
-);
+console.log(form.words)
 
-const addWord = ()=>{
-   form.words.push({ word: '', translation: '' });
+const addWord = () => {
+    form.words.push({ word: '', translation: '' });
 }
 
 function submit() {
